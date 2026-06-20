@@ -1,7 +1,5 @@
 import mss
 import numpy as np
-import cv2
-
 from settings import MONITOR_NUMBER
 
 def detect_pixel(point_x, point_y, target_color, tolerance=30):
