@@ -1,6 +1,6 @@
 from ctypes import Structure, byref, c_long, windll
 from pynput.keyboard import KeyCode, Controller as KeyController
-from settings import BUTTON_COORDINATES
+from settings import BUTTON_COORDINATES, MONEY_DELAY_TIME
 import time
 
 keyboard = KeyController()
@@ -41,11 +41,6 @@ def click_left():
     send_mouse_input(flags=MOUSEEVENTF_LEFTUP)
 
 def rebirth():
-    # Open rebirth menu
-    keyboard.press(KeyCode.from_char('m'))
-    keyboard.release(KeyCode.from_char('m'))
-    time.sleep(0.2)
-
     # Rebirth button placement
     move_mouse_in_steps(BUTTON_COORDINATES["REBIRTH"])
     time.sleep(0.1)
@@ -66,8 +61,13 @@ def rebirth():
     # Load save 1
     move_mouse_in_steps(BUTTON_COORDINATES["LOAD1"])
     click_left()
-    time.sleep(1.5)
+    time.sleep(MONEY_DELAY_TIME)
 
     # Load save 2
     move_mouse_in_steps(BUTTON_COORDINATES["LOAD2"])
     click_left()
+
+    # Open rebirth menu
+    keyboard.press(KeyCode.from_char('m'))
+    keyboard.release(KeyCode.from_char('m'))
+    time.sleep(0.2)
