@@ -52,11 +52,8 @@ def rebirth():
     time.sleep(0.2)
 
     # Open settings
-    keyboard.press(KeyCode.from_char('c'))
-    keyboard.release(KeyCode.from_char('c'))
-    move_mouse_in_steps(BUTTON_COORDINATES["SETTINGS_OPEN"])
-    click_left()
-    time.sleep(0.2)
+    keyboard.press(KeyCode.from_char('l'))
+    keyboard.release(KeyCode.from_char('l'))
 
     # Load save 1
     move_mouse_in_steps(BUTTON_COORDINATES["LOAD1"])
