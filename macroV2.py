@@ -5,7 +5,7 @@ import webhook
 from detectProgress import detect_pixel
 from rebirth import rebirth
 from pynput import keyboard
-from settings import END_KEY, BUTTON_COORDINATES, START_KEY, TARGET_COLOR, SCAN_INTERVAL_SECONDS, SCAN_TOLERANCE
+from settings import END_KEY, BUTTON_COORDINATES, START_KEY, TARGET_COLOR, SCAN_INTERVAL_SECONDS, SCAN_TOLERANCE, USE_WEBHOOK
 
 is_scanning = False
 scanning = False
@@ -19,7 +19,11 @@ def scan_loop():
                 scanning = True
                 print("Progress color detected. Running rebirth...")
                 rebirth()
-                webhook.send_webhook("Rebirth completed successfully.", webhook.convert_to_bytes(webhook.capture_region()))
+                if USE_WEBHOOK:
+                    try:
+                        webhook.send_webhook("Rebirth completed successfully.", webhook.convert_to_bytes(webhook.capture_region()))
+                    except Exception as e:
+                        print(f"Error sending webhook (Check your URL): {e}")
                 scanning = False
 
         time.sleep(SCAN_INTERVAL_SECONDS)

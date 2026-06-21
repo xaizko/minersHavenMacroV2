@@ -16,6 +16,7 @@ BUTTON_COORDINATES = {
 START_KEY = keyboard.KeyCode.from_char('r')
 END_KEY = keyboard.KeyCode.from_char('q')
 
+
 # Step size for mouse movement (higher is faster but less human-like)
 STEP_SIZE = 10
 
@@ -27,6 +28,10 @@ SCAN_TOLERANCE = 100
 
 # Delay time betwen loading setups
 MONEY_DELAY_TIME = 2  # Time to wait after loading save before loading second loadout
+
+# Optional Features - Set to true if you want to use them
+# Be sure to configure properly if you enable them
+USE_WEBHOOK = False
 
 # Webhook settings
 WEBHOOK_URL = os.getenv("WEBHOOK_URL") # .env file is optional, you can replace with just your webhook url if you want
