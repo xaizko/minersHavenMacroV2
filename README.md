@@ -23,11 +23,12 @@ Install these Python packages before running the macro:
 - `pynput`
 - `mss`
 - `numpy`
+ - `requests`
 
 Install them with:
 
 ```bash
-pip install pynput mss numpy
+pip install pynput mss numpy requests
 ```
 
 ### Required Coordinates
@@ -40,6 +41,11 @@ Use [getMousePosition.py](getMousePosition.py) to get the coordinates for these 
 - Loadout 1 button
 - Loadout 2 button
 - Progress point being scanned
+
+### Webhook screenshots
+
+This project can optionally send a screenshot to a Discord webhook URL when you've successfully rebirthed. Add `WEBHOOK_URL` (your Discord webhook) to your `settings.py` if you want webhook support.
+
 
 ### Loadout Notes
 
@@ -66,6 +72,8 @@ The main options live in [settings.py](settings.py):
 - `SCAN_INTERVAL_SECONDS`: How often the scanner checks the pixel.
 - `SCAN_TOLERANCE`: How close the detected color must be to `TARGET_COLOR`.
 - `MONEY_DELAY_TIME`: Wait time used in the rebirth sequence before the next loadout click.
+- `WEBHOOK_URL`: Your webhook url.
+- `REGION`: The region in which your webhook screenshot will be taken
 
 ### Button Coordinates
 
