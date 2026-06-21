@@ -1,0 +1,3 @@
+import autoRejoin
+
+autoRejoin.rejoinGame()

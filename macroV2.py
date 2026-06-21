@@ -4,8 +4,9 @@ import webhook
 
 from detectProgress import detect_pixel
 from rebirth import rebirth
+from autoRejoin import shouldRejoin, rejoinGame, resyncMacro
 from pynput import keyboard
-from settings import END_KEY, BUTTON_COORDINATES, START_KEY, TARGET_COLOR, SCAN_INTERVAL_SECONDS, SCAN_TOLERANCE, USE_WEBHOOK
+from settings import END_KEY, BUTTON_COORDINATES, START_KEY, TARGET_COLOR, SCAN_INTERVAL_SECONDS, SCAN_TOLERANCE, USE_WEBHOOK, USE_AUTO_REJOIN
 
 is_scanning = False
 scanning = False
@@ -24,6 +25,11 @@ def scan_loop():
                         webhook.send_webhook("Rebirth completed successfully.", webhook.convert_to_bytes(webhook.capture_region()))
                     except Exception as e:
                         print(f"Error sending webhook (Check your URL): {e}")
+                if USE_AUTO_REJOIN and shouldRejoin():
+                    print("Player is not in the game. Rejoining...")
+                    rejoinGame()
+                    time.sleep(10)
+                    resyncMacro()
                 scanning = False
 
         time.sleep(SCAN_INTERVAL_SECONDS)

@@ -1,8 +1,10 @@
 from pynput import keyboard
-from dotenv import load_dotenv
+# Uncomment the line below if using a .env file
+# from dotenv import load_dotenv
 import os
 
-load_dotenv()
+# Uncomment the line below if using a .env file
+# load_dotenv()
 
 # Fill in with x,y coordinates you get from getMousePosition.py
 BUTTON_COORDINATES = {
@@ -31,9 +33,9 @@ MONEY_DELAY_TIME = 2  # Time to wait after loading save before loading second lo
 
 # Optional Features - Set to true if you want to use them
 # Be sure to configure properly if you enable them
-USE_WEBHOOK = False
 
 # Webhook settings
+USE_WEBHOOK = False
 WEBHOOK_URL = os.getenv("WEBHOOK_URL") # .env file is optional, you can replace with just your webhook url if you want
                                        # This is so I don't have to swap out the webhook url when I make changes to the settings
 REGION = {
@@ -42,3 +44,14 @@ REGION = {
     "width": 775, # Width of the region
     "height": 295 # Height of the region
 }
+
+# Auto Rejoin
+USE_AUTO_REJOIN = False
+PLAYER_ID = os.getenv("PLAYER_ID") # .env file is optional, you can replace with just your player ID if you want
+                                       # This is so I don't have to swap out the player ID when I make changes to the settings
+REJOIN_COORDINATES = {
+    "PRIVATE_ISLAND": (1164, 439),
+    "SELECT_WORLD": (1211, 326),
+    "SELECT_SAVE": (1218, 484)
+}
+                                    
