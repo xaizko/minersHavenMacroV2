@@ -15,7 +15,7 @@ def getPlayerPresence():
         json={"userIds": [PLAYER_ID]},
         headers={"accept": "application/json"},
     ).json()
-    return data.get("userPresenceType", 0)
+    return data.get("userPresences", [{}])[0].get("userPresenceType", 0)
 
 # Returns True if the player is not in the game
 def shouldRejoin():
