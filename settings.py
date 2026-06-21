@@ -13,9 +13,11 @@ BUTTON_COORDINATES = {
 START_KEY = keyboard.KeyCode.from_char('r')
 END_KEY = keyboard.KeyCode.from_char('q')
 
+# Scanning settings
 MONITOR_NUMBER = 1  # Change if you want to capture a different monitor
 TARGET_COLOR = (52, 255, 109)
 SCAN_INTERVAL_SECONDS = 2
 SCAN_TOLERANCE = 100
 
+# Delay time betwen loading setups
 MONEY_DELAY_TIME = 2  # Time to wait after loading save before loading second loadout
