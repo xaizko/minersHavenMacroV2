@@ -21,3 +21,12 @@ SCAN_TOLERANCE = 100
 
 # Delay time betwen loading setups
 MONEY_DELAY_TIME = 2  # Time to wait after loading save before loading second loadout
+
+# Webhook settings
+WEBHOOK_URL = "WEBHOOK_URL_HERE"
+REGION = {
+    "top": 0, # Y coordinate of top left corner
+    "left": 0, # X coordinate of top left corner
+    "width": 1920, # Width of the region
+    "height": 1080 # Height of the region
+}
