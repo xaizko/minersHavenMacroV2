@@ -1,4 +1,8 @@
 from pynput import keyboard
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Fill in with x,y coordinates you get from getMousePosition.py
 BUTTON_COORDINATES = {
@@ -12,6 +16,9 @@ BUTTON_COORDINATES = {
 START_KEY = keyboard.KeyCode.from_char('r')
 END_KEY = keyboard.KeyCode.from_char('q')
 
+# Step size for mouse movement (higher is faster but less human-like)
+STEP_SIZE = 10
+
 # Scanning settings
 MONITOR_NUMBER = 1  # Change if you want to capture a different monitor
 TARGET_COLOR = (52, 255, 109)
@@ -22,7 +29,8 @@ SCAN_TOLERANCE = 100
 MONEY_DELAY_TIME = 2  # Time to wait after loading save before loading second loadout
 
 # Webhook settings
-WEBHOOK_URL = "WEBHOOK_URL_HERE"  # Replace with your actual webhook URL
+WEBHOOK_URL = os.getenv("WEBHOOK_URL") # .env file is optional, you can replace with just your webhook url if you want
+                                       # This is so I don't have to swap out the webhook url when I make changes to the settings
 REGION = {
     "top": 332, # Y coordinate of top left corner
     "left": 577, # X coordinate of top left corner

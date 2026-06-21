@@ -1,6 +1,6 @@
 from ctypes import Structure, byref, c_long, windll
 from pynput.keyboard import KeyCode, Controller as KeyController
-from settings import BUTTON_COORDINATES, MONEY_DELAY_TIME
+from settings import BUTTON_COORDINATES, MONEY_DELAY_TIME, STEP_SIZE
 import time
 
 keyboard = KeyController()
@@ -22,7 +22,7 @@ def send_mouse_input(dx=0, dy=0, flags=0):
     windll.user32.mouse_event(flags, dx, dy, 0, 0)
 
 
-def move_mouse_in_steps(target_position, steps=40, step_delay=0.01):
+def move_mouse_in_steps(target_position, steps=STEP_SIZE, step_delay=0.01):
     current_x, current_y = get_cursor_position()
     target_x, target_y = target_position
 
@@ -43,19 +43,20 @@ def click_left():
 def rebirth():
     # Rebirth button placement
     move_mouse_in_steps(BUTTON_COORDINATES["REBIRTH"])
-    time.sleep(0.1)
+    time.sleep(0.02)
     click_left()
     
     # Confirm rebirth
     move_mouse_in_steps(BUTTON_COORDINATES["REBIRTH_CONFIRM"])
     click_left()
-    time.sleep(0.2)
+    time.sleep(0.02)
 
     # Open settings
     keyboard.press(KeyCode.from_char('l'))
     keyboard.release(KeyCode.from_char('l'))
 
     # Load save 1
+    time.sleep(0.3)
     move_mouse_in_steps(BUTTON_COORDINATES["LOAD1"])
     click_left()
     time.sleep(MONEY_DELAY_TIME)
@@ -67,4 +68,3 @@ def rebirth():
     # Open rebirth menu
     keyboard.press(KeyCode.from_char('m'))
     keyboard.release(KeyCode.from_char('m'))
-    time.sleep(0.2)
