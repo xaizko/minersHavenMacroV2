@@ -68,3 +68,4 @@ def rebirth():
     # Open rebirth menu
     keyboard.press(KeyCode.from_char('m'))
     keyboard.release(KeyCode.from_char('m'))
+    time.sleep(0.1)
