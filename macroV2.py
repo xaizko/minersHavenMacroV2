@@ -13,6 +13,7 @@ scanning = False
 
 def scan_loop():
     global scanning
+    global rejoin
     while True:
         if is_scanning:
             point_x, point_y = BUTTON_COORDINATES["PROGRESS_POINT"]
@@ -25,12 +26,19 @@ def scan_loop():
                         webhook.send_webhook("Rebirth completed successfully.", webhook.convert_to_bytes(webhook.capture_region()))
                     except Exception as e:
                         print(f"Error sending webhook (Check your URL): {e}")
-                if USE_AUTO_REJOIN and shouldRejoin():
-                    print("Player is not in the game. Rejoining...")
-                    rejoinGame()
-                    time.sleep(10)
-                    resyncMacro()
                 scanning = False
+
+            if USE_AUTO_REJOIN and shouldRejoin():
+                print("Player is not in the game. Rejoining...")
+                rejoinGame()
+                time.sleep(30) # Time to open Roblox and start joining
+                resyncMacro()
+
+                if USE_WEBHOOK:
+                    try:
+                        webhook.send_webhook("Connection was lost, resynced", webhook.convert_to_bytes(webhook.capture_region()))
+                    except Exception as e:
+                        print(f"Error sending webhook (Check your URL): {e}")
 
         time.sleep(SCAN_INTERVAL_SECONDS)
 

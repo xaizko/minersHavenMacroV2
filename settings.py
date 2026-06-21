@@ -10,6 +10,7 @@ import os
 BUTTON_COORDINATES = {
     "REBIRTH": (1164,439),
     "REBIRTH_CONFIRM": (737, 449),
+    "SETTINGS_OPEN": (1070, 420),
     "LOAD1": (1211, 326),
     "LOAD2": (1218,484),
     "PROGRESS_POINT": (913, 441)
@@ -50,8 +51,8 @@ USE_AUTO_REJOIN = False
 PLAYER_ID = os.getenv("PLAYER_ID") # .env file is optional, you can replace with just your player ID if you want
                                        # This is so I don't have to swap out the player ID when I make changes to the settings
 REJOIN_COORDINATES = {
-    "PRIVATE_ISLAND": (1164, 439),
-    "SELECT_WORLD": (1211, 326),
-    "SELECT_SAVE": (1218, 484)
+    "PRIVATE_ISLAND": (1144, 813),
+    "SELECT_WORLD": (771, 1024),
+    "SELECT_SAVE": (242, 1019)
 }
                                     

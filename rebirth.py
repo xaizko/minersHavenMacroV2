@@ -24,7 +24,7 @@ def openLoadout():
 
 def loadSave1():
     # Load save 1
-    time.sleep(0.3)
+    time.sleep(0.8)
     mouseMovement.move_mouse_in_steps(BUTTON_COORDINATES["LOAD1"])
     mouseMovement.click_left()
     time.sleep(MONEY_DELAY_TIME)
