@@ -2,12 +2,12 @@ from pynput import keyboard
 
 # Fill in with x,y coordinates you get from getMousePosition.py
 BUTTON_COORDINATES = {
-    "REBIRTH": (1429, 441),
-    "REBIRTH_CONFIRM": (1146, 441),
-    "SETTINGS_OPEN": (1390, 425),
-    "LOAD1": (1510, 329),
-    "LOAD2": (1540, 481),
-    "PROGRESS_POINT": (1231, 443)
+    "REBIRTH": (1164,439),
+    "REBIRTH_CONFIRM": (737, 449),
+    "SETTINGS_OPEN": (1070, 420),
+    "LOAD1": (1211, 326),
+    "LOAD2": (1218,484),
+    "PROGRESS_POINT": (913, 441)
 }
 
 START_KEY = keyboard.KeyCode.from_char('r')
@@ -25,8 +25,8 @@ MONEY_DELAY_TIME = 2  # Time to wait after loading save before loading second lo
 # Webhook settings
 WEBHOOK_URL = "WEBHOOK_URL_HERE"
 REGION = {
-    "top": 0, # Y coordinate of top left corner
-    "left": 0, # X coordinate of top left corner
-    "width": 1920, # Width of the region
-    "height": 1080 # Height of the region
+    "top": 332, # Y coordinate of top left corner
+    "left": 577, # X coordinate of top left corner
+    "width": 775, # Width of the region
+    "height": 295 # Height of the region
 }

@@ -10,8 +10,8 @@ def capture_region():
         img = sct.grab(region)
         return img
 
-def convert_to_bytes(img_bytes):
-    return mss.tools.to_png(img_bytes)
+def convert_to_bytes(img):
+    return mss.tools.to_png(img.rgb, img.size)
 
 def send_webhook(message, image_bytes):
     files = {
