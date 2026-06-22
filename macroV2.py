@@ -6,11 +6,10 @@ from detectProgress import detect_pixel
 from rebirth import rebirth
 from autoRejoin import shouldRejoin, rejoinGame, resyncMacro
 from pynput import keyboard
-from settings import END_KEY, BUTTON_COORDINATES, START_KEY, TARGET_COLOR, SCAN_INTERVAL_SECONDS, SCAN_TOLERANCE, USE_WEBHOOK, USE_AUTO_REJOIN
+from settings import END_KEY, BUTTON_COORDINATES, START_KEY, TARGET_COLOR, SCAN_INTERVAL_SECONDS, SCAN_TOLERANCE, USE_WEBHOOK, USE_AUTO_REJOIN, AUTO_REJOIN_CHECK_INTERVAL_SECONDS
 
 is_scanning = False
 scanning = False
-AUTO_REJOIN_CHECK_INTERVAL_SECONDS = 20 * 60
 
 def scan_loop():
     global scanning
