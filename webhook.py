@@ -13,14 +13,16 @@ def capture_region():
 def convert_to_bytes(img):
     return mss.tools.to_png(img.rgb, img.size)
 
-def send_webhook(message, image_bytes):
-    files = {
-        "file": ("screenshot.png", image_bytes, "image/png")
-    }
-
+def send_webhook(message, image_bytes: bytes = None):
     payload = {
         "content": message
     }
+
+    files = None
+    if image_bytes is not None:
+        files = {
+            "file": ("screenshot.png", image_bytes, "image/png")
+        }
 
     response = requests.post(WEBHOOK_URL, files=files, data=payload)
     return response

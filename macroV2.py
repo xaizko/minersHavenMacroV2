@@ -10,10 +10,12 @@ from settings import END_KEY, BUTTON_COORDINATES, START_KEY, TARGET_COLOR, SCAN_
 
 is_scanning = False
 scanning = False
+AUTO_REJOIN_CHECK_INTERVAL_SECONDS = 20 * 60
 
 def scan_loop():
     global scanning
     global rejoin
+    last_auto_rejoin_check = 0
     while True:
         if is_scanning:
             point_x, point_y = BUTTON_COORDINATES["PROGRESS_POINT"]
@@ -28,17 +30,20 @@ def scan_loop():
                         print(f"Error sending webhook (Check your URL): {e}")
                 scanning = False
 
-            if USE_AUTO_REJOIN and shouldRejoin():
-                print("Player is not in the game. Rejoining...")
-                rejoinGame()
-                time.sleep(30) # Time to open Roblox and start joining
-                resyncMacro()
+            current_time = time.time()
+            if USE_AUTO_REJOIN and (current_time - last_auto_rejoin_check) >= AUTO_REJOIN_CHECK_INTERVAL_SECONDS:
+                last_auto_rejoin_check = current_time
+                if shouldRejoin():
+                    print("Player is not in the game. Rejoining...")
+                    rejoinGame()
+                    time.sleep(30) # Time to open Roblox and start joining
+                    resyncMacro()
 
-                if USE_WEBHOOK:
-                    try:
-                        webhook.send_webhook("Connection was lost, resynced", webhook.convert_to_bytes(webhook.capture_region()))
-                    except Exception as e:
-                        print(f"Error sending webhook (Check your URL): {e}")
+                    if USE_WEBHOOK:
+                        try:
+                            webhook.send_webhook("Connection was lost, resynced", webhook.convert_to_bytes(webhook.capture_region()))
+                        except Exception as e:
+                            print(f"Error sending webhook (Check your URL): {e}")
 
         time.sleep(SCAN_INTERVAL_SECONDS)
 

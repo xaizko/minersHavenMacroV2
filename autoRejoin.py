@@ -2,7 +2,8 @@ import mouseMovement
 import os
 import requests
 import time
-from settings import PLAYER_ID, REJOIN_COORDINATES
+from webhook import send_webhook
+from settings import PLAYER_ID, REJOIN_COORDINATES, USE_WEBHOOK
 from rebirth import loadSave1, loadSave2, openLoadout, openRebirthMenu, rebirth
 
 API_URL = "https://presence.roblox.com/v1/presence/users"
@@ -10,12 +11,18 @@ IN_GAME_CODE = 2
 GAME_ID = 258258996
 
 def getPlayerPresence():
-    data = requests.post(
-        API_URL,
-        json={"userIds": [PLAYER_ID]},
-        headers={"accept": "application/json"},
-    ).json()
-    return data.get("userPresences", [{}])[0].get("userPresenceType", 0)
+    try:
+        data = requests.post(
+            API_URL,
+            json={"userIds": [PLAYER_ID]},
+            headers={"accept": "application/json"},
+        ).json()
+        return data.get("userPresences", [{}])[0].get("userPresenceType", 0)
+    except Exception as e:
+        print(f"Error fetching player presence (likely rate limited): {e}")
+        if USE_WEBHOOK:
+            send_webhook("Error fetching player presence (likely rate limited)")
+        return 0
 
 # Returns True if the player is not in the game
 def shouldRejoin():
