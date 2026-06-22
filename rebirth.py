@@ -1,7 +1,7 @@
 import time
 import mouseMovement
 from pynput.keyboard import KeyCode, Controller as KeyController
-from settings import BUTTON_COORDINATES, MONEY_DELAY_TIME, STEP_SIZE
+from settings import BUTTON_COORDINATES, MONEY_DELAY_TIME, STEP_SIZE, AUTO_PULSE_TIMER, PULSE_BUTTON, USE_AUTO_PULSE
 
 keyboard = KeyController()
 
@@ -41,6 +41,11 @@ def openRebirthMenu():
     keyboard.release(KeyCode.from_char('m'))
     time.sleep(0.1)
 
+def autoPulse():
+    time.sleep(AUTO_PULSE_TIMER)
+    mouseMovement.move_mouse_in_steps(PULSE_BUTTON)
+    mouseMovement.click_left()
+
 def rebirth():
     clickRebirth()
     confirmRebirth()
@@ -49,4 +54,6 @@ def rebirth():
     loadSave1()
     loadSave2()
 
+    if USE_AUTO_PULSE:
+        autoPulse()
     openRebirthMenu()

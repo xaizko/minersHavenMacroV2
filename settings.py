@@ -24,9 +24,9 @@ STEP_SIZE = 10
 
 # Scanning settings
 MONITOR_NUMBER = 1  # Change if you want to capture a different monitor
-TARGET_COLOR = (52, 255, 109)
-SCAN_INTERVAL_SECONDS = 1
-SCAN_TOLERANCE = 100
+TARGET_COLOR = (52, 255, 109) # Color to scan for
+SCAN_INTERVAL_SECONDS = 1 # Time between each scan
+SCAN_TOLERANCE = 100 # Lenency for color matching
 
 # Delay time betwen loading setups
 MONEY_DELAY_TIME = 2.5  # Time to wait after loading save before loading second loadout
@@ -56,4 +56,8 @@ REJOIN_COORDINATES = {
     "SELECT_SAVE": (242, 1019),
     "RECENT_ITEMS": (1134, 436),
 }
-                                    
+
+# Auto Pulse
+USE_AUTO_PULSE = True
+PULSE_BUTTON = (1144, 813) 
+AUTO_PULSE_TIMER = 10 # Time to pulse after loading last loadout in seconds
