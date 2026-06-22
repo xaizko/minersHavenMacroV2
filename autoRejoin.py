@@ -46,6 +46,11 @@ def selectSave():
     time.sleep(0.2)
     mouseMovement.click_left()
 
+def clickRecentItems():
+    mouseMovement.move_mouse_in_steps(REJOIN_COORDINATES["RECENT_ITEMS"])
+    time.sleep(0.1)
+    mouseMovement.click_left()
+
 def resyncMacro():
     selectPrivateIsland()
     selectWorld()
