@@ -24,14 +24,15 @@ def openLoadout():
 
 def loadSave1():
     # Load save 1
-    time.sleep(0.8)
     mouseMovement.move_mouse_in_steps(BUTTON_COORDINATES["LOAD1"])
+    time.sleep(0.8)
     mouseMovement.click_left()
     time.sleep(MONEY_DELAY_TIME)
 
 def loadSave2():
     # Load save 2
     mouseMovement.move_mouse_in_steps(BUTTON_COORDINATES["LOAD2"])
+    time.sleep(0.05)
     mouseMovement.click_left()
 
 def openRebirthMenu():
