@@ -1,3 +1,3 @@
-import autoRejoin
+from webhook import send_webhook
 
-autoRejoin.rejoinGame()
+send_webhook("Test webhook")
