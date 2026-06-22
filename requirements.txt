@@ -1,0 +1,5 @@
+pynput
+mss
+numpy
+requests
+python-dotenv

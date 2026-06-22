@@ -1,106 +1,72 @@
 # Miners Haven Auto Rebirth Macro
 
-This project is an automatic rebirth macro for Miners Haven. It watches a specific pixel on the screen and runs the rebirth sequence when the target color appears.
+Automatic rebirth macro and helper scripts for Miners Haven. It scans a pixel on your screen and runs a rebirth + loadout sequence when the configured progress color appears. Optional features include webhook screenshots, auto-rejoin, and auto-pulse.
 
-## What It Does
+**Quick features:**
+- Pixel-based progress detection and automatic rebirth flow
+- Optional Discord webhook screenshots on rebirth/resync (optional)
+- Auto-rejoin when player is not detected in-game (optional)
+- Auto-pulse after rebirth (optional)
 
-- Starts scanning the chosen monitor for a target pixel color.
-- Triggers `rebirth()` when that color is detected.
-- Uses configurable mouse coordinates and keyboard hotkeys.
+## Quick Start
 
-## Setup
-
-1. Run [getMousePosition.py](getMousePosition.py) to record the screen coordinates for each button you want to use.
-2. Fill in the button positions in [settings.py](settings.py).
-3. Set the correct monitor number in [settings.py](settings.py).
-4. Make sure the target color in [settings.py](settings.py) matches the pixel you want to detect.
-5. Start the macro with [macroV2.py](macroV2.py).
+1. Install dependencies: see `requirements.txt`.
+2. Run `getMousePosition.py` to collect coordinates.
+3. Update `settings.py` (coordinates, monitor, target color, optional `.env` values).
+4. (Optional) create a `.env` file from `.env.example` and set `WEBHOOK_URL` and `PLAYER_ID`.
+5. Start the macro with `python macroV2.py` and press `r` to start scanning.
 
 ## Dependencies
 
-Install these Python packages before running the macro:
-
-- `pynput`
-- `mss`
-- `numpy`
- - `requests`
-
-Install them with:
+Install from `requirements.txt`:
 
 ```bash
-pip install pynput mss numpy requests
+pip install -r requirements.txt
 ```
 
-### Required Coordinates
+Packages used:
+- `pynput` (keyboard/mouse controls)
+- `mss` (screen capture)
+- `numpy` (pixel processing)
+- `requests` (optional webhooks & Roblox presence API)
+- `python-dotenv` (optional `.env` support)
 
-Use [getMousePosition.py](getMousePosition.py) to get the coordinates for these points:
+## Configuration
 
-- Rebirth button
-- Confirm rebirth button
-- Open layouts / settings button
-- Loadout 1 button
-- Loadout 2 button
-- Progress point being scanned
+- `settings.py` holds coordinates, keys, colors, and toggles.
+- `WEBHOOK_URL` and `PLAYER_ID` can be provided via environment variables (use `.env` with `python-dotenv`) or set directly in `settings.py`.
 
-### Webhook screenshots
-
-This project can optionally send a screenshot to a Discord webhook URL when you've successfully rebirthed. Add `WEBHOOK_URL` (your Discord webhook) to your `settings.py` if you want webhook support.
-
-
-### Loadout Notes
-
-The loading steps in [rebirth.py](rebirth.py) may need to be adjusted for your own setup.
-
-Not everyone uses the same layouts or loadouts, so if your buttons or flow are different, you may need to edit the loadout section in [rebirth.py](rebirth.py) to match your game.
+### Recommended workflow
+1. Run `python getMousePosition.py` and click the UI elements to gather coordinates.
+2. Paste coordinates into `settings.py` under `BUTTON_COORDINATES`.
+3. Use `monitorCheck.py` if unsure which monitor index to use.
+4. Adjust `TARGET_COLOR` and `SCAN_TOLERANCE` for reliable detection.
 
 ## Hotkeys
+- `r`: Start scanning
+- `q`: Pause scanning
 
-- `r` starts scanning.
-- `q` pauses scanning.
+## Optional environment variables (.env)
+Create a `.env` file in the project root or use the provided `.env.example` with:
 
-These are defined in [settings.py](settings.py).
+```
+WEBHOOK_URL=https://discord.com/api/webhooks/your/webhook
+PLAYER_ID=12345678
+```
 
-## Settings Reference
+## Webhook screenshots
+When `USE_WEBHOOK` is enabled and `WEBHOOK_URL` is set, the macro will capture the configured `REGION` and upload a PNG to the webhook on successful rebirth or resync events.
 
-The main options live in [settings.py](settings.py):
+## Auto Rejoin
+`autoRejoin.py` queries the Roblox presence API using `PLAYER_ID`. If the player is not in-game it will open the game link and attempt to resync the macro after joining. Use `AUTO_REJOIN_CHECK_INTERVAL_SECONDS` to control how often presence is checked.
 
-- `BUTTON_COORDINATES`: Stores the x/y positions for all clickable UI elements.
-- `START_KEY`: Key that begins scanning.
-- `END_KEY`: Key that pauses scanning.
-- `MONITOR_NUMBER`: Which monitor to capture with `mss`.
-- `TARGET_COLOR`: The RGB color the scanner looks for.
-- `SCAN_INTERVAL_SECONDS`: How often the scanner checks the pixel.
-- `SCAN_TOLERANCE`: How close the detected color must be to `TARGET_COLOR`.
-- `MONEY_DELAY_TIME`: Wait time used in the rebirth sequence before the next loadout click.
-- `WEBHOOK_URL`: Your webhook url.
-- `REGION`: The region in which your webhook screenshot will be taken
-
-### Button Coordinates
-
-The current coordinate names are:
-
-- `REBIRTH`
-- `REBIRTH_CONFIRM`
-- `SETTINGS_OPEN`
-- `LOAD1`
-- `LOAD2`
-- `PROGRESS_POINT`
-
-## Monitor Check
-
-If the scanner is not working, use [monitorCheck.py](monitorCheck.py) to verify which monitor number matches your display.
-
-That script prints every monitor index and its screen bounds. In `mss`:
-
-- `0` is the full virtual desktop
-- `1` is the first monitor
-- `2` is the second monitor
-- and so on
-
-If your game is on the wrong monitor, update `MONITOR_NUMBER` in [settings.py](settings.py) and try again.
-
-## Notes
-
+## Safety and notes
 - Keep the game window focused when running the macro.
-- If the scanner misses the target color, adjust `TARGET_COLOR` and `SCAN_TOLERANCE`.
-- If clicks miss the UI, re-check the coordinates with [getMousePosition.py](getMousePosition.py).
+- If detection fails, tweak `TARGET_COLOR`, `SCAN_TOLERANCE`, and `PROGRESS_POINT`.
+
+## Troubleshooting
+- Webhook errors: verify `WEBHOOK_URL` and network connectivity.
+- Rate limits: the presence API can be rate limited; `autoRejoin.py` handles exceptions and reports via webhook if enabled.
+
+## License & Attribution
+This repo is provided as-is for personal use. Modify at your own risk.
