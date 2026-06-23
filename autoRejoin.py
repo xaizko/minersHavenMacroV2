@@ -32,6 +32,7 @@ def rejoinGame():
     os.startfile(f"roblox://placeId={GAME_ID}")
 
 def selectPrivateIsland():
+    mouseMovement.click_left()  # Click to focus Roblox window
     mouseMovement.move_mouse_in_steps(REJOIN_COORDINATES["PRIVATE_ISLAND"])
     mouseMovement.click_left()
 
@@ -65,6 +66,7 @@ def resyncMacro():
     # In game resync
     openLoadout()
     loadSave1()
+    time.sleep(3) # Safety time 
     loadSave2()
     openRebirthMenu()
     clickRecentItems()
