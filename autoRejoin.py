@@ -47,7 +47,11 @@ def selectSave():
     mouseMovement.click_left()
 
 def clickRecentItems():
-    mouseMovement.move_mouse_in_steps(REJOIN_COORDINATES["RECENT_ITEMS"])
+    mouseMovement.move_mouse_in_steps(REJOIN_COORDINATES["RECENT_ITEMS_SPOT_1"])
+    time.sleep(0.1)
+    mouseMovement.click_left()
+
+    mouseMovement.move_mouse_in_steps(REJOIN_COORDINATES["RECENT_ITEMS_SPOT_2"])
     time.sleep(0.1)
     mouseMovement.click_left()
 
@@ -63,3 +67,4 @@ def resyncMacro():
     loadSave1()
     loadSave2()
     openRebirthMenu()
+    clickRecentItems()

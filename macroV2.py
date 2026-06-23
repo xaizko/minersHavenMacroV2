@@ -32,6 +32,7 @@ def scan_loop():
             current_time = time.time()
             if USE_AUTO_REJOIN and (current_time - last_auto_rejoin_check) >= AUTO_REJOIN_CHECK_INTERVAL_SECONDS:
                 last_auto_rejoin_check = current_time
+                print("Checking if player is in the game...")
                 if shouldRejoin():
                     print("Player is not in the game. Rejoining...")
                     rejoinGame()

@@ -47,17 +47,18 @@ REGION = {
 
 # Auto Rejoin
 USE_AUTO_REJOIN = True
-AUTO_REJOIN_CHECK_INTERVAL_SECONDS = 20 * 60 # 20 minutes by default, avoid API rate limit
+AUTO_REJOIN_CHECK_INTERVAL_SECONDS = 15 * 60 # 20 minutes by default, avoid API rate limit
 PLAYER_ID = os.getenv("PLAYER_ID") # .env file is optional, you can replace with just your player ID if you want
                                        # This is so I don't have to swap out the player ID when I make changes to the settings
 REJOIN_COORDINATES = {
     "PRIVATE_ISLAND": (1144, 813),
     "SELECT_WORLD": (771, 1024),
     "SELECT_SAVE": (242, 1019),
-    "RECENT_ITEMS": (1134, 436),
+    "RECENT_ITEMS_SPOT_1": (1134, 436), # This is first location incase you don't have skips
+    "RECENT_ITEMS_SPOT_2": (953, 434), # This is second location incase you have skips
 }
 
 # Auto Pulse
-USE_AUTO_PULSE = True
-PULSE_BUTTON = (1144, 813) 
+USE_AUTO_PULSE = False
+PULSE_BUTTON = (55, 801) 
 AUTO_PULSE_TIMER = 10 # Time to pulse after loading last loadout in seconds
