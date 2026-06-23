@@ -13,7 +13,7 @@ scanning = False
 
 def scan_loop():
     global scanning
-    global rejoin
+
     last_auto_rejoin_check = 0
     while True:
         if is_scanning:
