@@ -52,10 +52,6 @@ def clickRecentItems():
     time.sleep(0.1)
     mouseMovement.click_left()
 
-    mouseMovement.move_mouse_in_steps(REJOIN_COORDINATES["RECENT_ITEMS_SPOT_2"])
-    time.sleep(0.1)
-    mouseMovement.click_left()
-
 def resyncMacro():
     selectPrivateIsland()
     selectWorld()
@@ -66,7 +62,9 @@ def resyncMacro():
     # In game resync
     openLoadout()
     loadSave1()
-    time.sleep(3) # Safety time 
-    loadSave2()
+    # Uncomment below if want to load a second layout
+    # time.sleep(3) # Safety time 
+    # loadSave2()
     openRebirthMenu()
     clickRecentItems()
+    time.sleep(0.5)

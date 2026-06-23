@@ -47,15 +47,14 @@ REGION = {
 
 # Auto Rejoin
 USE_AUTO_REJOIN = True
-AUTO_REJOIN_CHECK_INTERVAL_SECONDS = 15 * 60 # 20 minutes by default, avoid API rate limit
+AUTO_REJOIN_CHECK_INTERVAL_SECONDS = 5 * 60 # 20 minutes by default, avoid API rate limit
 PLAYER_ID = os.getenv("PLAYER_ID") # .env file is optional, you can replace with just your player ID if you want
                                        # This is so I don't have to swap out the player ID when I make changes to the settings
 REJOIN_COORDINATES = {
     "PRIVATE_ISLAND": (1144, 813),
-    "SELECT_WORLD": (771, 1024),
+    "SELECT_WORLD": (242, 1019),
     "SELECT_SAVE": (242, 1019),
-    "RECENT_ITEMS_SPOT_1": (1134, 436), # This is first location incase you don't have skips
-    "RECENT_ITEMS_SPOT_2": (953, 434), # This is second location incase you have skips
+    "RECENT_ITEMS_SPOT_1": (1071, 437), # Try to position this between the two possible locations, there are two possible locations depending on if u have money to skip
 }
 
 # Auto Pulse

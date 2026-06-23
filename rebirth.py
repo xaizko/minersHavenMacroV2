@@ -27,7 +27,8 @@ def loadSave1():
     mouseMovement.move_mouse_in_steps(BUTTON_COORDINATES["LOAD1"])
     time.sleep(0.8)
     mouseMovement.click_left()
-    time.sleep(MONEY_DELAY_TIME)
+    # Uncomment below if want to wait for money before loading a second layout
+    # time.sleep(MONEY_DELAY_TIME)
 
 def loadSave2():
     # Load save 2
@@ -52,7 +53,8 @@ def rebirth():
 
     openLoadout()
     loadSave1()
-    loadSave2()
+    # Uncomment below if want to load a second layout
+    # loadSave2()
 
     if USE_AUTO_PULSE:
         autoPulse()
