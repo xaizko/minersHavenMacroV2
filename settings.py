@@ -8,12 +8,12 @@ load_dotenv()
 
 # Fill in with x,y coordinates you get from getMousePosition.py
 BUTTON_COORDINATES = {
-    "REBIRTH": (1164,439),
-    "REBIRTH_CONFIRM": (737, 449),
-    "SETTINGS_OPEN": (1070, 420),
-    "LOAD1": (1211, 326),
-    "LOAD2": (1218,484),
-    "PROGRESS_POINT": (913, 441)
+    "REBIRTH": (1164,439), # Coordinates for the rebirth button
+    "REBIRTH_CONFIRM": (737, 449), # Coordinates for the rebirth confirm button
+    "LOAD1": (1211, 326), # Coordinates for the first load button
+    "LOAD2": (1218,484), # Coordinates for the second load button
+    "LOAD3": (1225, 642), # Coordinates for the third load button
+    "PROGRESS_POINT": (913, 441) # Coordinate of the rebirth progress bar point (place towards the end)
 }
 
 START_KEY = keyboard.KeyCode.from_char('r')
@@ -29,7 +29,7 @@ SCAN_INTERVAL_SECONDS = 1 # Time between each scan
 SCAN_TOLERANCE = 100 # Lenency for color matching
 
 # Delay time betwen loading setups
-MONEY_DELAY_TIME = 2.5  # Time to wait after loading save before loading second loadout
+LOADOUT_DELAY_TIME = 2.5  # Time to wait after loading a loadout before loading the next one
 
 # Optional Features - Set to false if you don't want to use them
 # Be sure to configure properly if you enable them
@@ -61,3 +61,7 @@ REJOIN_COORDINATES = {
 USE_AUTO_PULSE = False
 PULSE_BUTTON = (55, 801) 
 AUTO_PULSE_TIMER = 10 # Time to pulse after loading last loadout in seconds
+
+# Use Multiple Loadouts
+USE_LOAD_2 = False
+USE_LOAD_3 = False

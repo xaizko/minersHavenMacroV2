@@ -1,7 +1,7 @@
 import time
 import mouseMovement
 from pynput.keyboard import KeyCode, Controller as KeyController
-from settings import BUTTON_COORDINATES, MONEY_DELAY_TIME, STEP_SIZE, AUTO_PULSE_TIMER, PULSE_BUTTON, USE_AUTO_PULSE
+from settings import BUTTON_COORDINATES, LOADOUT_DELAY_TIME, AUTO_PULSE_TIMER, PULSE_BUTTON, USE_AUTO_PULSE, USE_LOAD_2, USE_LOAD_3
 
 keyboard = KeyController()
 
@@ -22,19 +22,12 @@ def openLoadout():
     keyboard.press(KeyCode.from_char('l'))
     keyboard.release(KeyCode.from_char('l'))
 
-def loadSave1():
-    # Load save 1
-    mouseMovement.move_mouse_in_steps(BUTTON_COORDINATES["LOAD1"])
-    time.sleep(0.8)
+def loadSave(loadout):
+    # Load a specific save
+    mouseMovement.move_mouse_in_steps(BUTTON_COORDINATES[loadout])
+    time.sleep(0.8) # Safety net, adjust to your preference
     mouseMovement.click_left()
-    # Uncomment below if want to wait for money before loading a second layout
-    # time.sleep(MONEY_DELAY_TIME)
-
-def loadSave2():
-    # Load save 2
-    mouseMovement.move_mouse_in_steps(BUTTON_COORDINATES["LOAD2"])
-    time.sleep(0.05)
-    mouseMovement.click_left()
+    time.sleep(LOADOUT_DELAY_TIME) # Set time to 0 if you don't want to wait
 
 def openRebirthMenu():
     # Open rebirth menu
@@ -52,9 +45,13 @@ def rebirth():
     confirmRebirth()
 
     openLoadout()
-    loadSave1()
-    # Uncomment below if want to load a second layout
-    # loadSave2()
+    loadSave("LOAD1")
+
+    if USE_LOAD_2:
+        loadSave("LOAD2")
+
+    if USE_LOAD_3:
+        loadSave("LOAD3")
 
     if USE_AUTO_PULSE:
         autoPulse()
