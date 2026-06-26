@@ -3,8 +3,8 @@ import os
 import requests
 import time
 from webhook import send_webhook
-from settings import PLAYER_ID, REJOIN_COORDINATES, USE_WEBHOOK
-from rebirth import loadSave1, loadSave2, openLoadout, openRebirthMenu, rebirth
+from settings import PLAYER_ID, REJOIN_COORDINATES, USE_LOAD_2, USE_LOAD_3, USE_WEBHOOK
+from rebirth import loadSave, openLoadout, openRebirthMenu
 
 API_URL = "https://presence.roblox.com/v1/presence/users"
 IN_GAME_CODE = 2
@@ -61,10 +61,15 @@ def resyncMacro():
     
     # In game resync
     openLoadout()
-    loadSave1()
-    # Uncomment below if want to load a second layout
-    # time.sleep(3) # Safety time 
-    # loadSave2()
+
+    loadSave("LOAD1")
+
+    if USE_LOAD_2:
+        loadSave("LOAD2")
+
+    if USE_LOAD_3:
+        loadSave("LOAD3")
+
     openRebirthMenu()
     clickRecentItems()
     time.sleep(0.5)
